@@ -30,4 +30,21 @@ azure site create --git frankel-rs
 // https://bambora@frankel-rs.scm.azurewebsites.net/frankel-rs.git
 ```
 
-3. you may still need to run `npm run compile` on `kudu` console to get code compiled. becuase again, **NOTE: iisnode completely ignore your package.json**
+
+3. do we have to provide a `web.config` for azure ?  
+if you don't source-control web.config, azure **might** generate one for you (if you `npm start` is like `node start-file.js`)
+`git push azure master`  , or `git push azure develop:master` (map local develop to azure:master)
+
+```
+remote: Copying file: 'src\style\base.scss'  
+remote: Copying file: 'xxxxx'   
+remote: Copying file: 'xxxxxx'
+remote: Using start-up script devServer.js from package.json. 
+**remote: Generated web.config.**  
+remote: The package.json file does not specify node.js engine version constraints.  
+remote: The node.js application will run with the default node.js version 4.4.7.    
+remote: Selected npm version 2.15.8     
+```
+
+
+NOTE:   you may still need to run `npm run compile` on `kudu` console to get code compiled. becuase again, **NOTE: iisnode completely ignore your package.json**
