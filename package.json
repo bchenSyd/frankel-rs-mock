@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node index.js ",
-    "local":"nodemon index.js --exec babel-node",
-    "debug": "babel-node ./index.js  --source-maps  --debug-brk --inspect",
+    "start": "babel-node devServer.js ",
+    "local":"nodemon devServer.js --exec babel-node",
+    "debug": "babel-node ./devServer.js  --source-maps  --debug-brk --inspect",
     "test": "babel-node mockSchema.js"
   },
   "author": "bochen@kindredgroup.com",
