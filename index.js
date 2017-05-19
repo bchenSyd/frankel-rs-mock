@@ -5,7 +5,7 @@ import path from 'path';
 
 import schema from './mockSchema';
 
-const GRAPHQL_PORT = 8000
+const GRAPHQL_PORT = process.env.port || 8000;
 // Expose a GraphQL endpoint
 const graphQLServer = express();
 graphQLServer.use(cors({
