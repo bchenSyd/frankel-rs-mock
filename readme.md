@@ -15,16 +15,19 @@ setup project structure
             this is the real stuff. expected to be run everytime during deployment
 
 
-# deploy to azure
+# deploy to azure  **NOTE: iisnode completely ignore your package.json**
 
 1. add `prepublish` script 
 ```
     "prepublish":"npm run compile",
 ```
-so that when `azure (kudu)` do `npm install`, you code get compiled along the way
+so that when you run `git push azure master` , which cause `azure (kudu)` to do `npm install`, you code get compiled along the way
+
 
 2. create site
 ```
 azure site create --git frankel-rs
 // https://bambora@frankel-rs.scm.azurewebsites.net/frankel-rs.git
 ```
+
+3. you may still need to run `npm run compile` on `kudu` console to get code compiled. becuase again, **NOTE: iisnode completely ignore your package.json**
