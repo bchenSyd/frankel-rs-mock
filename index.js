@@ -4,7 +4,7 @@ import graphQLHTTP from 'express-graphql';
 import cors from 'cors';
 import path from 'path';
 
-import schema from './mockSchema';
+import schema from './src/mockSchema';
 
 
 // Expose a GraphQL endpoint
