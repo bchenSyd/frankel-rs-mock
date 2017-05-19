@@ -15,6 +15,14 @@ setup project structure
 
 
 # deploy to azure
+
+1. add `prepublish` script 
+```
+    "prepublish":"npm run compile",
+```
+so that when `azure (kudu)` do `npm install`, you code get compiled along the way
+
+2. create site
 ```
 azure site create --git frankel-rs
 // https://bambora@frankel-rs.scm.azurewebsites.net/frankel-rs.git

@@ -5,10 +5,12 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./dist/index.js ",
-    "local":"nodemon index.js --exec babel-node",
+    "local": "nodemon index.js --exec babel-node",
     "debug": "babel-node ./index.js  --source-maps  --debug-brk --inspect",
-    "compile-index":"babel ./dist/index.js  --out-file  dist/index.js   --source-maps", 
-    "compile":"babel ./src  --out-dir  dist/lib   --source-maps  --copy-files"
+    "compile-index": "babel ./dist/index.js  --out-file  dist/index.js   --source-maps",
+    "compile": "babel ./src  --out-dir  dist/lib   --source-maps  --copy-files",
+    "prepublish":"npm run compile",
+    "clean": "rimraf -f dist/lib"
   },
   "author": "bochen@kindredgroup.com",
   "license": "ISC",
@@ -24,6 +26,7 @@
     "graphql": "^0.9.6",
     "graphql-tools": "^0.11.0",
     "moment": "^2.18.1",
+    "rimraf": "^2.6.1",
     "webpack-dev-server": "^2.4.5"
   },
   "engines": {
