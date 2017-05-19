@@ -16,15 +16,14 @@ var _path = require('path');
 
 var _path2 = _interopRequireDefault(_path);
 
-var _mockSchema = require('./lib/mockSchema');
+var _mockSchema = require('./dist/mockSchema');
 
 var _mockSchema2 = _interopRequireDefault(_mockSchema);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 // Expose a GraphQL endpoint
-var graphQLServer = (0, _express2.default)(); // *********  must be named devServer.js to be able to host on azure ***************************
-
+var graphQLServer = (0, _express2.default)();
 graphQLServer.use((0, _cors2.default)({
     origin: 'http://localhost:3002',
     credentials: true
@@ -36,4 +35,4 @@ graphQLServer.listen(GRAPHQL_PORT, 'localhost', function () {
     return console.log('GraphQL Server is now running on http://localhost:' + GRAPHQL_PORT);
 });
 
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=server.js.map

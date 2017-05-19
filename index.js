@@ -1,4 +1,3 @@
-// *********  must be named devServer.js to be able to host on azure ***************************
 import express from 'express';
 import graphQLHTTP from 'express-graphql';
 import cors from 'cors';
