@@ -7,12 +7,13 @@ casual.define('priceCode', () => {
 })
 
 casual.define('eventIdentifier', eventId => {
+    // event($id:11223344) or node(id:"event:11223344")
     let id = eventId || casual.integer(115300, 115399);
-    if (eventId.lastIndexOf('event:') === -1) {
-        id = "event:" + id;
+    if (typeof id === 'string' && id.lastIndexOf('event:') !== -1) {
+        id = id.split('event:')[1]
     }
     return {
-        id,
+        id: 'event:' + id,
         origId: '' + id
     }
 });
