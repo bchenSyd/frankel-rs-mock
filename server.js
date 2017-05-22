@@ -25,7 +25,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 // Expose a GraphQL endpoint
 var graphQLServer = (0, _express2.default)();
 graphQLServer.use((0, _cors2.default)({
-    origin: 'http://localhost:3002',
+    origin: /^http\:\/\/localhost\:(3001|3002)$/i,
     credentials: true
 }));
 graphQLServer.use('/', (0, _expressGraphql2.default)({ schema: _mockSchema2.default, graphiql: true, pretty: true }));

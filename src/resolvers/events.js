@@ -12,7 +12,7 @@ const eventsResolver = (parent, args, context) => {
     if (ids) {
         return ids.map(id => eventResolver(id));
     }
-    return new MockList([4,6]); //next to go; carousel..etc
+    return new MockList([4, 6]); //next to go; carousel..etc
 
 }
 const eventResolver = eventId => {
@@ -27,11 +27,17 @@ const eventResolver = eventId => {
         noOfPlacings: casual.integer(1, 3),
         competitors: () => new MockList([5, 10], (parent, args, context) => {
             const { origId } = parent;
-            return competitorResolver(parseInt(origId));
+            // we have to generate a consitent serials of saddle number in case user select on into betslip
+            if (parent.currentCompetitorIndex) {
+                parent.currentCompetitorIndex++;
+            } else {
+                parent.currentCompetitorIndex = 1;
+            }
+            return competitorResolver(parseInt(origId), parent.currentCompetitorIndex);
         }),
-        dsitance: casual.integer(500, 2000) + 'm',
+        distance: casual.integer(500, 2000) + 'm',
         outcomeDateString: casual.outcomeDateString,
-        
+
         markets: marketsResolver(),
         childMarkets: null
     }

@@ -1,6 +1,10 @@
 import casual from 'casual';
 import moment from 'moment';
 
+casual.define('priceCode', () => {
+    return casual.random_element(['FXD', 'FXD', 'FXD', 'FXD', 'FXD',
+        'BT3', 'BT2', 'BT2P']);
+})
 
 casual.define('eventIdentifier', eventId => {
     const id = eventId || casual.integer(115300, 115399);
