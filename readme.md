@@ -30,18 +30,22 @@ azure site create --git frankel-rs
 // https://bambora@frankel-rs.scm.azurewebsites.net/frankel-rs.git
 ```
 
-3. deploy.cmd
+3. deploy.cmd or PostDeploymentAction
 
-```
-$ npm install kuduscript -g
+    3.1 custom deployment script
+    ```
+    $ npm install kuduscript -g
 
-# this will generate deployment script for you to do further customization. not mandatory though...
-$ kuduscript -y --node
-Generating deployment script for node.js Web Site
-Generated deployment script files
-```
+    # this will generate deployment script for you to do further customization. not mandatory though...
+    $ kuduscript -y --node
+    Generating deployment script for node.js Web Site
+    Generated deployment script files
+    ```
+    3.2 use PostDeploymentAction  
+        go to https://frankel-rs.scm.azurewebsites.net/DebugConsole 
+        and `cd D:\home\site\deployments\tools ` then `touch PostDeploymentAction`
 
-3. do we have to provide a `web.config` for azure ?  
+4. do we have to provide a `web.config` for azure ?  
 if you don't source-control web.config, azure **might** generate one for you (if you `npm start` is like `node start-file.js`)
 `git push azure master`  , or `git push azure develop:master` (map local develop to azure:master)
 
