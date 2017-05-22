@@ -15,7 +15,7 @@ setup project structure
             this is the real stuff. expected to be run everytime during deployment
 
 
-# deploy to azure  **NOTE: iisnode completely ignore your package.json**
+# deploy to azure  **NOTE: kudu doesn't run npm script unless you explicitly tell it to do so**
 
 1. add `prepublish` script 
 ```
@@ -49,21 +49,32 @@ azure site create --git frankel-rs
         touch post-deploy.cmd
         echo 'echo can you see me?' > post-deploy.cmd
         
+    3.3 log  
 
+            remote: about to run `npm run build`
+            remote: .....
+            remote: src\resolvers\race.js -> dist\resolvers\race.js
+            remote: src\resolvers\utils.js -> dist\resolvers\utils.js
+            remote: `npm run build` Finished successfully.
+            remote: Finished successfully.
+            remote: Running post deployment command(s)...
+            remote: post-deploy
+            remote:
+            remote: D:\home\site\repository>echo can you see me?
+            remote: can you see me?
+            remote: Deployment successful.
+            To https://frankel-rs.scm.azurewebsites.net/frankel-rs.git
+            1cd258c..e7eab54  master -> master
 4. do we have to provide a `web.config` for azure ?  
 if you don't source-control web.config, azure **might** generate one for you (if you `npm start` is like `node start-file.js`)
 `git push azure master`  , or `git push azure develop:master` (map local develop to azure:master)
-
-```
-remote: Copying file: 'src\style\base.scss'  
-remote: Copying file: 'xxxxx'   
-remote: Copying file: 'xxxxxx'
-remote: Using start-up script devServer.js from package.json. 
-**remote: Generated web.config.**  
-remote: The package.json file does not specify node.js engine version constraints.  
-remote: The node.js application will run with the default node.js version 4.4.7.    
-remote: Selected npm version 2.15.8     
-```
-
-
-NOTE:   you may still need to run `npm run compile` on `kudu` console to get code compiled. becuase again, **NOTE: iisnode completely ignore your package.json**
+    ```
+    remote: Copying file: 'src\style\base.scss'  
+    remote: Copying file: 'xxxxx'   
+    remote: Copying file: 'xxxxxx'
+    remote: Using start-up script devServer.js from package.json. 
+    **remote: Generated web.config.**  
+    remote: The package.json file does not specify node.js engine version constraints.  
+    remote: The node.js application will run with the default node.js version 4.4.7.    
+    remote: Selected npm version 2.15.8     
+    ```
