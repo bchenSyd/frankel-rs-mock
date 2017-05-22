@@ -19,7 +19,8 @@ const raceResolver = () => {
         type: 't',
         state: 'VIC',
         status: casual.eventStatus,
-        distance: casual.integer(500, 2000) + 'm'
+        distance: casual.integer(500, 2000) + 'm',
+        result:'finalized',
     }
 };
 

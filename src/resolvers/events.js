@@ -5,6 +5,11 @@ import { marketsResolver, competitorResolver } from './index';
 import moment from 'moment';
 
 const eventsResolver = (parent, args, context) => {
+    const { filterBy } = args;
+    if (filterBy === 'quadrella') {
+        // this is a defect in frankel-au; if you returns something for quadrella, frankel-au breaks
+        return null;
+    }
     let { id, ids } = args
     if (id) {
         ids = [id];

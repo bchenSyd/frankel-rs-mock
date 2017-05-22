@@ -24,6 +24,7 @@ addMockFunctionsToSchema({
     mocks: {
         Int: () => casual.integer(1, 10),
         Float: () => casual.double(3, 30).toFixed(1),
+        Decimal:()=> casual.integer(2,5),
         Viewer: () => ({
             meetings: () => new MockList([20, 30]),
             events: (parent, args, context) => eventsResolver(parent, args, context),

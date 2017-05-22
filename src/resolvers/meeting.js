@@ -9,7 +9,8 @@ const meetingResolver = () => {
         name: casual.meetingName,
         origId: id,
         raceType: 't',
-        races: ()=> new MockList([4,8])
+        races: ()=> new MockList([4,8]),
+        trackCondition:''
     }
 };
 

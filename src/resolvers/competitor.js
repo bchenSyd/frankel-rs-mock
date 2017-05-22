@@ -18,7 +18,24 @@ const competitorResolver = (eventId, saddleNumber) => ({
         parent.currentPriceIndex++;
         return { ...price, price: casual.integer(3, 30) };
     }),
-    saddleNumber
+    saddleNumber,
+    eligibility:"",
+    shortFlucs: [{
+        "type": "open",
+        "value": "31"
+    },
+    {
+        "type": "top",
+        "value": "34"
+    },
+    {
+        "type": "fluc",
+        "value": "31"
+    },
+    {
+        "type": "fluc",
+        "value": "34"
+    }]
 });
 
 export default competitorResolver;
