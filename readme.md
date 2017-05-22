@@ -33,8 +33,12 @@ azure site create --git frankel-rs
 3. deploy.cmd
 
 ```
-#this will generate deployment script for you to do further customization. not mandatory though...
-azure site deploymentscript --node
+$ npm install kuduscript -g
+
+# this will generate deployment script for you to do further customization. not mandatory though...
+$ kuduscript -y --node
+Generating deployment script for node.js Web Site
+Generated deployment script files
 ```
 
 3. do we have to provide a `web.config` for azure ?  
