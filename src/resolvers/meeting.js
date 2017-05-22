@@ -1,5 +1,5 @@
 import { casual } from './utils';
-import { MockList } from 'graphql-tools';
+import { MockList } from 'graphql-tools-bchen';
 import moment from 'moment';
 const meetingResolver = () => {
     const id = casual.word + '_au_t_' + moment().add(casual.integer(0, 100), 'hours').format('DD_MM_YYYY');

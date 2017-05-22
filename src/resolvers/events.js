@@ -1,5 +1,5 @@
 import { casual } from './utils';
-import { MockList } from 'graphql-tools';
+import { MockList } from 'graphql-tools-bchen';
 import { getEventId, getOutComeDateString } from './utils';
 import { marketsResolver, competitorResolver } from './index';
 import moment from 'moment';
@@ -23,6 +23,7 @@ const eventResolver = eventId => {
         type: 't',
         silkUrl: 'https://dqp0psmzdy9om.cloudfront.net/77783_8_SPRITE_32x32.png',
         state: 'VIC',
+        name: casual.title,
         status: casual.eventStatus,
         noOfPlacings: casual.integer(1, 3),
         competitors: () => new MockList([5, 10], (parent, args, context) => {
@@ -37,7 +38,7 @@ const eventResolver = eventId => {
         }),
         distance: casual.integer(500, 2000) + 'm',
         outcomeDateString: casual.outcomeDateString,
-        result:'Finalized', // only used when event is closed
+        result: 'Finalized', // only used when event is closed
         markets: marketsResolver(),
         childMarkets: null
     }

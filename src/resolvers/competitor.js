@@ -1,5 +1,5 @@
 import { casual } from './utils';
-import { MockList } from 'graphql-tools'
+import { MockList } from 'graphql-tools-bchen'
 import { competitorPriceCode } from './priceCode';
 
 const competitorResolver = (eventId, saddleNumber) => ({

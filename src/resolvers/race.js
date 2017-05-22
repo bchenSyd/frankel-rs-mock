@@ -1,5 +1,5 @@
 import { casual } from './utils';
-import { MockList } from 'graphql-tools';
+import { MockList } from 'graphql-tools-bchen';
 import { getEventId, getOutComeDateString } from './utils';
 import competitorResolver from './competitor';
 import moment from 'moment';

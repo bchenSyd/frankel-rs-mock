@@ -2328,6 +2328,22 @@
           "name": "RacingInterface",
           "description": null,
           "fields": [
+             {
+              "name": "id",
+              "description": null,
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
             {
               "name": "status",
               "description": null,
@@ -3916,6 +3932,22 @@
           "name": "ScratchingRace",
           "description": null,
           "fields": [
+             {
+              "name": "id",
+              "description": "The ID of an object.",
+              "args": [],
+              "type": {
+                "kind": "NON_NULL",
+                "name": null,
+                "ofType": {
+                  "kind": "SCALAR",
+                  "name": "String",
+                  "ofType": null
+                }
+              },
+              "isDeprecated": false,
+              "deprecationReason": null
+            },
             {
               "name": "status",
               "description": null,
