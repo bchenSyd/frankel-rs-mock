@@ -101,9 +101,11 @@ call :SelectNodeVersion
 IF EXIST "%DEPLOYMENT_TARGET%\package.json" (
   pushd "%DEPLOYMENT_TARGET%"
   call :ExecuteCmd !NPM_CMD! install --production  :: npm install --production
-  IF !ERRORLEVEL! NEQ 0 goto error 
+  IF !ERRORLEVEL! NEQ 0 goto error
+  echo about to run 'npm run build' 
   call :ExecuteCmd !NPM_CMD! run build             :: npm run build
   IF !ERRORLEVEL! NEQ 0 goto error
+  echo 'npm run build' Finished successfully.
   popd
 )
 
