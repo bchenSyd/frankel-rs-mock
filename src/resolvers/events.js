@@ -37,7 +37,7 @@ const eventResolver = eventId => {
         }),
         distance: casual.integer(500, 2000) + 'm',
         outcomeDateString: casual.outcomeDateString,
-
+        result:'Finalized', // only used when event is closed
         markets: marketsResolver(),
         childMarkets: null
     }

@@ -21,6 +21,10 @@ casual.define('raceIdentifier', () => {
     }
 });
 
+casual.define('meetingName', () => casual.random_element(['Goulburn', 'Mildura', 'Gosford', 'Richmond', 'Kembla Granage', 'Muswellbrook',
+    'Rockhampton', 'Seymour', 'Albion Park', 'Glocester Park', 'Menangle', 'Newcastle', 'Swan Hill', 'Devonport', 'Gawler', 'Geelong',
+     'Ipswich', 'Townsville', 'Warragul','Redcliffe','terang'
+]))
 casual.define('country', () => {
     // 'eng-ire-sco-wal', 'aus', 'saf', 'usa', 'can', 'fra', 'uae', 'hk', 'jap', 'sin', 'nz', 'swe', 'deu', 'chi', 'ury', 'arg', 'ita', 'kor'
     return casual.random_element([

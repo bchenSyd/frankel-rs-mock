@@ -6,7 +6,7 @@ const meetingResolver = () => {
     return {
         countryCode: casual.country.code,
         id: 'meeting:' + id,
-        name: casual.word,
+        name: casual.meetingName,
         origId: id,
         raceType: 't',
         races: ()=> new MockList([4,8])
