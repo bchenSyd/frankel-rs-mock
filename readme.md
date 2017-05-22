@@ -30,6 +30,12 @@ azure site create --git frankel-rs
 // https://bambora@frankel-rs.scm.azurewebsites.net/frankel-rs.git
 ```
 
+3. deploy.cmd
+
+```
+#this will generate deployment script for you to do further customization. not mandatory though...
+azure site deploymentscript --node
+```
 
 3. do we have to provide a `web.config` for azure ?  
 if you don't source-control web.config, azure **might** generate one for you (if you `npm start` is like `node start-file.js`)

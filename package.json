@@ -4,12 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "npm run compile & node ./server.js ",
+    "start": "npm run build & node ./server.js ",
     "local": "nodemon index.js --exec babel-node",
     "debug": "babel-node ./index.js  --source-maps  --debug-brk --inspect",
     "compile-index": "babel ./index.js  --out-file  server.js   --source-maps",
-    "compile": "npm run clean&babel ./src  --out-dir  dist   --source-maps  --copy-files",
-    "prepublish":"npm run compile",
+    "build": "npm run clean&babel ./src  --out-dir  dist   --source-maps  --copy-files",
+    "prepublish":"npm run build",
     "clean": "rimraf -f dist"
   },
   "author": "bochen@kindredgroup.com",
