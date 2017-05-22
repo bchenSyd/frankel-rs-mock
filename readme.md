@@ -42,8 +42,13 @@ azure site create --git frankel-rs
     Generated deployment script files
     ```
     3.2 use PostDeploymentAction  
-        go to https://frankel-rs.scm.azurewebsites.net/DebugConsole 
-        and `cd D:\home\site\deployments\tools ` then `touch PostDeploymentAction`
+        go to https://frankel-rs.scm.azurewebsites.net/DebugConsole
+
+        cd D:\home\site\deployments\tools 
+        mkdir PostDeploymentAction && cd PostDeploymentAction
+        touch post-deploy.cmd
+        echo 'echo can you see me?' > post-deploy.cmd
+        
 
 4. do we have to provide a `web.config` for azure ?  
 if you don't source-control web.config, azure **might** generate one for you (if you `npm start` is like `node start-file.js`)
