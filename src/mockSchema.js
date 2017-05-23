@@ -4,7 +4,7 @@ import { graphql, buildClientSchema } from 'graphql';
 import casual from 'casual';
 import {
     meetingResolver, eventsResolver, eventResolver,
-    raceResolver, daysResolver
+    raceResolver, daysResolver, formsResolver
 } from './resolvers';
 
 // step 1: build schema
@@ -46,7 +46,8 @@ addMockFunctionsToSchema({
             return {
                 typename
             }
-        }
+        }, 
+        CompetitorForm:()=> formsResolver()
     }
 })
 

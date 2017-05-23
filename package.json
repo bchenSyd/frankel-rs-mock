@@ -10,7 +10,8 @@
     "compile-index": "babel ./index.js  --out-file  server.js   --source-maps",
     "build": "npm run clean&babel ./src  --out-dir  dist   --source-maps  --copy-files",
     "prepublish":"npm run build",
-    "clean": "rimraf -f dist"
+    "clean": "rimraf -f dist",
+    "generateSchema":"nodemon schema-generator/generateSchemaJson.js --exec babel-node  --watch schema-generator --ignore  schema-generator/schema.json --ignore schema-generator/schema.graphql"
   },
   "author": "bochen@kindredgroup.com",
   "license": "ISC",

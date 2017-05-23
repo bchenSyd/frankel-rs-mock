@@ -35,7 +35,8 @@ const competitorResolver = (eventId, saddleNumber) => ({
     {
         "type": "fluc",
         "value": "34"
-    }]
+    }], 
+    forms: ()=>new MockList(10)
 });
 
 export default competitorResolver;

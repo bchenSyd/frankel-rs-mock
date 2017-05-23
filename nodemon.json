@@ -1,0 +1,15 @@
+{
+    "verbose": true,
+    "watch": [
+        "schema-generator",
+        "src"
+    ],
+    "ignore": [
+        "schema-generator/schema.json",
+        "schema-generator/schema.graphql"
+    ],
+    "env": {
+        "NODE_ENV": "development"
+    },
+    "ext": "js json"
+}

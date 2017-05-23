@@ -1,0 +1,61 @@
+type _distance {
+  meteres: Int
+}
+
+type _jockey {
+  statistics: [String]
+  name: String
+}
+
+type _otherRunners {
+  position: String
+  competitor: String
+}
+
+type _price {
+  starting: String
+}
+
+type CompetitorForm {
+  meetingDate: String
+  track: TrackConditionObject
+  distance: _distance
+  classes: [String]
+  eventPrizemoney: String
+  starters: Int
+  eventDuration: String
+  jockey: _jockey
+  weightCarried: Float
+  barrier: String
+  prices: _price
+  decimalPrices: _price
+  margin: String
+  otherRunners: [_otherRunners]
+  limitWeight: Float
+  weightAdj: Float
+  daysSinceLastRun: Int
+  grade: String
+  winningTime: String
+  pir: String
+  split: String
+  numberOfCompetitors: String
+  raceNumber: String
+}
+
+type Query {
+  competitorForm: CompetitorForm
+}
+
+enum TrackCondition {
+  Good
+  Heavy
+  Slow
+  Synthetic
+}
+
+type TrackConditionObject {
+  expectedCondition: TrackCondition
+  name: String
+  track4CharAbbrev: String
+  condition: TrackCondition
+}
