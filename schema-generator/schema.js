@@ -10,35 +10,127 @@ import {
     GraphQLList
 } from 'graphql';
 
-/*
- GraphQL serializes Enum values as strings, however internally Enums can be represented by any kind of type, often integers.
- Note: If a value is not provided in a definition, the name of the enum value will be used as it's internal value.
- */
-const TrackConditionType = new GraphQLEnumType({
-    name: "TrackCondition",
-    values: {
-        Good: { value: 0 }, // can be of any type
-        Heavy: { value: 1 },
-        Slow: { value: 2 },
-        Synthetic: { value: 3 }
-    }
-})
-const TrackConditionObjectType = new GraphQLObjectType({
-    name: "TrackConditionObject",
-    fields: () => ({
-        expectedCondition: {
-            type: TrackConditionType
-        },
-        name: {
-            type: GraphQLString
-        },
-        track4CharAbbrev: {
-            type: GraphQLString
-        },
-        condition: {
-            type: TrackConditionType
+// utility types
+    const _distanceType = new GraphQLObjectType({
+        name: '_distance',
+        fields: {
+            metres: { type: GraphQLInt }
+        }
+    });
+
+    const _prizeType = new GraphQLObjectType({
+        name: '_prize',
+        fields: {
+            type: {
+                type: GraphQLString
+            },
+            value: {
+                type: GraphQLString
+            }
         }
     })
+
+    /*
+    GraphQL serializes Enum values as strings, however internally Enums can be represented by any kind of type, often integers.
+    Note: If a value is not provided in a definition, the name of the enum value will be used as it's internal value.
+    */
+    const _TrackConditionType = new GraphQLEnumType({
+        name: "_TrackCondition",
+        values: {
+            Good: { value: 0 }, // can be of any type
+            Heavy: { value: 1 },
+            Slow: { value: 2 },
+            Synthetic: { value: 3 }
+        }
+    })
+    const TrackConditionType = new GraphQLObjectType({
+        name: "TrackCondition",
+        fields: () => ({
+            expectedCondition: {
+                type: _TrackConditionType
+            },
+            name: {
+                type: GraphQLString
+            },
+            track4CharAbbrev: {
+                type: GraphQLString
+            },
+            condition: {
+                type: _TrackConditionType
+            }
+        })
+    });
+
+
+const MeetingFormType = new GraphQLObjectType({
+    name: "MeetingForm",
+    fields: {
+        date: {
+            type: GraphQLString
+        },
+        railPosition: {
+            type: GraphQLString
+        },
+        tabIndicator: {
+            type: GraphQLString
+        },
+        track: {
+            type: new GraphQLObjectType({
+                name: '_meetingTrack',
+                fields: {
+                    name: {
+                        type: GraphQLString
+                    },
+                    state: {
+                        type: GraphQLString
+                    }
+                }
+            })
+        },
+        races: {
+            type: new GraphQLList(GraphQLString)
+        },
+        stage: {
+            type: GraphQLString
+        },
+        formOptions: {
+            type: new GraphQLList(GraphQLString)
+        }
+    }
+})
+
+const EventFormType = new GraphQLObjectType({
+    name: "EventForm",
+    fields: {
+        eventId: {
+            type: GraphQLString
+        },
+        startTime: {
+            type: GraphQLString
+        },
+        distance: {
+            type: _distanceType
+        },
+        restrictions: {
+            type: new GraphQLObjectType({
+                name: '_restrictions',
+                fields: {
+                    jockey: {
+                        type: GraphQLString
+                    }
+                }
+            })
+        },
+        weightType: {
+            type: GraphQLString
+        },
+        classes: {
+            type: new GraphQLList(GraphQLString)
+        },
+        prizes: {
+            type: new GraphQLList(_prizeType)
+        }
+    }
 });
 
 const CompetitorFormType = new GraphQLObjectType({
@@ -57,15 +149,10 @@ const CompetitorFormType = new GraphQLObjectType({
                 type: GraphQLString
             },
             track: {
-                type: TrackConditionObjectType
+                type: TrackConditionType
             },
             distance: {
-                type: new GraphQLObjectType({
-                    name: '_distance',
-                    fields: {
-                        meteres: { type: GraphQLInt }
-                    }
-                })
+                type: _distanceType
             },
             classes: {
                 type: new GraphQLList(GraphQLString)
@@ -151,10 +238,15 @@ const CompetitorFormType = new GraphQLObjectType({
     }
 })
 
-
 const QueryType = new GraphQLObjectType({
     name: 'Query',
     fields: {
+        meetingForm:{
+            type:MeetingFormType
+        },
+        eventForm:{
+            type:EventFormType
+        },
         competitorForm: {
             type: CompetitorFormType
         }

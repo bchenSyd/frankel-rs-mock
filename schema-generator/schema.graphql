@@ -1,10 +1,15 @@
 type _distance {
-  meteres: Int
+  metres: Int
 }
 
 type _jockey {
   statistics: [String]
   name: String
+}
+
+type _meetingTrack {
+  name: String
+  state: String
 }
 
 type _otherRunners {
@@ -16,9 +21,25 @@ type _price {
   starting: String
 }
 
+type _prize {
+  type: String
+  value: String
+}
+
+type _restrictions {
+  jockey: String
+}
+
+enum _TrackCondition {
+  Good
+  Heavy
+  Slow
+  Synthetic
+}
+
 type CompetitorForm {
   meetingDate: String
-  track: TrackConditionObject
+  track: TrackCondition
   distance: _distance
   classes: [String]
   eventPrizemoney: String
@@ -42,20 +63,35 @@ type CompetitorForm {
   raceNumber: String
 }
 
+type EventForm {
+  eventId: String
+  startTime: String
+  distance: _distance
+  restrictions: _restrictions
+  weightType: String
+  classes: [String]
+  prizes: [_prize]
+}
+
+type MeetingForm {
+  date: String
+  railPosition: String
+  tabIndicator: String
+  track: _meetingTrack
+  races: [String]
+  stage: String
+  formOptions: [String]
+}
+
 type Query {
+  meetingForm: MeetingForm
+  eventForm: EventForm
   competitorForm: CompetitorForm
 }
 
-enum TrackCondition {
-  Good
-  Heavy
-  Slow
-  Synthetic
-}
-
-type TrackConditionObject {
-  expectedCondition: TrackCondition
+type TrackCondition {
+  expectedCondition: _TrackCondition
   name: String
   track4CharAbbrev: String
-  condition: TrackCondition
+  condition: _TrackCondition
 }
