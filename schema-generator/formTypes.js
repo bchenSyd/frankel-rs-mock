@@ -228,6 +228,9 @@ const CompetitorFormType = new GraphQLObjectType({
             split: {
                 type: GraphQLString
             },
+            place: {
+                type: GraphQLString
+            },
             numberOfCompetitors: {
                 type: GraphQLString
             },

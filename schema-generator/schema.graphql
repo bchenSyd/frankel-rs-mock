@@ -59,6 +59,7 @@ type CompetitorForm {
   winningTime: String
   pir: String
   split: String
+  place: String
   numberOfCompetitors: String
   raceNumber: String
 }
