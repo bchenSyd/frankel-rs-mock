@@ -5,4 +5,4 @@ export { default as meetingResolver } from './meeting';
 export { default as marketsResolver } from './market';
 export { default as competitorResolver } from './competitor';
 export * from './priceCode';
-export { default as formsResolver} from './forms';
+export * from './forms';

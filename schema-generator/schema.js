@@ -103,7 +103,7 @@ const EventFormType = new GraphQLObjectType({
     name: "EventForm",
     fields: {
         eventId: {
-            type: GraphQLString
+            type: GraphQLInt
         },
         startTime: {
             type: GraphQLString

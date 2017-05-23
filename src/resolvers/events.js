@@ -1,7 +1,7 @@
 import { casual } from './utils';
 import { MockList } from 'graphql-tools-bchen';
 import { getEventId, getOutComeDateString } from './utils';
-import { marketsResolver, competitorResolver } from './index';
+import { marketsResolver, competitorResolver, eventFormResolver } from './index';
 import moment from 'moment';
 
 const eventsResolver = (parent, args, context) => {
@@ -45,7 +45,8 @@ const eventResolver = eventId => {
         outcomeDateString: casual.outcomeDateString,
         result: 'Finalized', // only used when event is closed
         markets: marketsResolver(),
-        childMarkets: null
+        childMarkets: null,
+        eventForm: eventFormResolver(eventIdentifier.origId)
     }
 };
 

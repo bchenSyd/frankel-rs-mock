@@ -4,7 +4,7 @@ import { graphql, buildClientSchema } from 'graphql';
 import casual from 'casual';
 import {
     meetingResolver, eventsResolver, eventResolver,
-    raceResolver, daysResolver, formsResolver
+    raceResolver, daysResolver, competitorFormResolver
 } from './resolvers';
 
 // step 1: build schema
@@ -24,7 +24,7 @@ addMockFunctionsToSchema({
     mocks: {
         Int: () => casual.integer(1, 10),
         Float: () => casual.double(3, 30).toFixed(1),
-        Decimal:()=> casual.integer(2,5),
+        Decimal: () => casual.integer(2, 5),
         Viewer: () => ({
             meetings: () => new MockList([20, 30]),
             events: (parent, args, context) => eventsResolver(parent, args, context),
@@ -46,8 +46,9 @@ addMockFunctionsToSchema({
             return {
                 typename
             }
-        }, 
-        CompetitorForm:()=> formsResolver()
+        },
+        
+        CompetitorForm: () => competitorFormResolver()
     }
 })
 

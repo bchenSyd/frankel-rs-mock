@@ -64,7 +64,7 @@ type CompetitorForm {
 }
 
 type EventForm {
-  eventId: String
+  eventId: Int
   startTime: String
   distance: _distance
   restrictions: _restrictions

@@ -1,5 +1,43 @@
 import { casual } from './utils';
+import { MockList } from 'graphql-tools-bchen';
 import moment from 'moment';
+
+const meetingFormResolver = () => ({
+    date: moment().subtract(casual.integer(10, 100), 'hours').format('DD/MM/YYYY'),
+    railPosition: casual.title,
+    tabIndicator: casual.letter,
+    track: {
+        name: casual.word,
+        state: 'VIC'
+    },
+    races: [],
+    stage: casual.letter,
+    formOptions: []
+});
+
+const eventFormResolver = eventId => {
+    const competitorCount = casual.integer(8, 10);
+    return {
+        eventId,
+        startTime: moment().subtract(casual.integer(10, 100), 'hours').format("h:mm a"),
+        distance: {
+            metres: casual.integer(800, 1600)
+        },
+        restrictions: {
+            jockey: casual.full_name
+        },
+        weightType: "Handicap",
+        prizes: () => new MockList(competitorCount + 1, (parent, args) => {
+            let index = parent.prizeIndex;
+            index = index ? index + 1 : 1;
+            parent.prizeIndex = index;
+            return {
+                type: index > competitorCount ? 'total' : index.toString(),
+                value: casual.integer(1000, 10000).toString()
+            }
+        })
+    }
+};
 
 const track_conditions = ["Good", "Good", "Good", "Good", "Good", "Good", "Heavy", "Slow", "Synthetic"];
 const trackResolver = () => ({
@@ -9,7 +47,7 @@ const trackResolver = () => ({
     track4CharAbbrev: casual.word
 });
 
-const formsResolver = () => ({
+const competitorFormResolver = () => ({
     meetingDate: moment().subtract(casual.integer(1, 100), 'hours').format("DD/MM/YYYY"),
     track: trackResolver(),
     eventDuration: casual.double(100, 200).toFixed(2).toString(),
@@ -33,7 +71,15 @@ const formsResolver = () => ({
     ],
     place: casual.integer(1, 10).toString(),
     winningTime: casual.double(100, 200).toFixed(1).toString(),
-    pir: Array.from(Array(6), e=>casual.integer(1,10)).join(','),
-    split: ""
+    pir: Array.from(Array(6), e => casual.integer(1, 10)).join(','),
+    split: "",
+    distance: {
+        metres: casual.integer(800, 1600)
+    },
 });
-export default formsResolver;
+export {
+    meetingFormResolver,
+    eventFormResolver,
+    competitorFormResolver
+};
+
