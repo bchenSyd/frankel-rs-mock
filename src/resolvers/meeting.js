@@ -1,7 +1,7 @@
 import { casual } from './utils';
 import { MockList } from 'graphql-tools-bchen';
 import moment from 'moment';
-import { meetingFormResolver } from './'
+import { meetingFormResolver, raceResolver } from './'
 
 
 const meetingResolver = () => {
@@ -12,8 +12,13 @@ const meetingResolver = () => {
         name: casual.meetingName,
         origId: id,
         raceType: 't',
-        races: () => new MockList([4, 8]),
-        trackCondition: '',
+        races: () => new MockList([8,10], (parent, args) => {
+            let index = parent.raceIndex;
+            index = index ? index + 1 : 1;
+            parent.raceIndex = index;
+            return raceResolver(index);
+        }),
+        trackCondition: casual.random_element(['', '', '', 'Soft', 'Soft6', 'Good', 'Fast']),
         meetingForm: meetingFormResolver()
     }
 };

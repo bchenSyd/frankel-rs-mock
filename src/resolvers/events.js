@@ -43,10 +43,14 @@ const eventResolver = eventId => {
         }),
         distance: casual.integer(500, 2000) + 'm',
         outcomeDateString: casual.outcomeDateString,
-        result: 'Finalized', // only used when event is closed
+        result: casual.random_element(['closed', '5,2,8', '4,5,3']), // only used when event is closed
         markets: marketsResolver(),
         childMarkets: null,
-        eventForm: eventFormResolver(eventIdentifier.origId)
+        eventForm: eventFormResolver(eventIdentifier.origId),
+        isFuture: casual.random_element(Array.from(Array(10), (x, index) => {
+            // 1/10 of chance to be future events
+            x = index % 20 === 1 ? true : false;
+        })),
     }
 };
 

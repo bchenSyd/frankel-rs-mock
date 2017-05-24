@@ -8,7 +8,7 @@ casual.define('priceCode', () => {
 
 casual.define('eventIdentifier', eventId => {
     // event($id:11223344) or node(id:"event:11223344")
-    let id = eventId || casual.integer(115300, 115399);
+    let id = eventId || casual.integer(115300, 125399);
     if (typeof id === 'string' && id.lastIndexOf('event:') !== -1) {
         id = id.split('event:')[1]
     }
@@ -18,7 +18,7 @@ casual.define('eventIdentifier', eventId => {
     }
 });
 casual.define('raceIdentifier', () => {
-    const id = casual.integer(115300, 115399);
+    const id = casual.integer(115300, 125399);
     return {
         id: 'race:' + id,
         origId: '' + id
@@ -50,7 +50,14 @@ casual.define('country', () => {
     ]);
 });
 
-casual.define('eventStatus', () => casual.random_element(['open2', 'open5', 'open6', 'closed', 'finalised']));
+casual.define('eventStatus', () => casual.random_element(Array.from(Array(20), (x, index) => {
+    if (index % 20 === 1) {
+        return 'closed'
+    } else if (index % 20 === 2) {
+        return 'finalized'
+    }
+    return 'open6'
+})));
 
 casual.define('outcomeDateString', () => moment().add(casual.integer(0, 60 * 24 * 2), 'minutes').format())
 

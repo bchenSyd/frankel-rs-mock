@@ -14,7 +14,7 @@ import {
 // const schema = makeExecutableSchema({ typeDefs: schemaString});
 
 //option 2: build schema using introspection
-import * as introspectionResult from './data/schema.json';
+import * as introspectionResult from './ubau-data/schema.json';
 const schema = buildClientSchema(introspectionResult.data);
 //*********************************************************************************
 
