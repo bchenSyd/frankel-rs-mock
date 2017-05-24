@@ -59,6 +59,6 @@ casual.define('eventStatus', () => casual.random_element(Array.from(Array(20), (
     return 'open6'
 })));
 
-casual.define('outcomeDateString', () => moment().add(casual.integer(0, 60 * 24 * 2), 'minutes').format())
+casual.define('outcomeDateString', () => moment().add(casual.integer(0, 60 * 24 * 2), 'minutes').utcOffset(0).format())
 
 export { casual } 
