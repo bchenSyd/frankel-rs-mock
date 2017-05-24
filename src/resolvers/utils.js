@@ -29,26 +29,23 @@ casual.define('meetingName', () => casual.random_element(['Goulburn', 'Mildura',
     'Rockhampton', 'Seymour', 'Albion Park', 'Glocester Park', 'Menangle', 'Newcastle', 'Swan Hill', 'Devonport', 'Gawler', 'Geelong',
     'Ipswich', 'Townsville', 'Warragul', 'Redcliffe', 'terang'
 ]))
-casual.define('country', () => {
-    // 'eng-ire-sco-wal', 'aus', 'saf', 'usa', 'can', 'fra', 'uae', 'hk', 'jap', 'sin', 'nz', 'swe', 'deu', 'chi', 'ury', 'arg', 'ita', 'kor'
-    return casual.random_element([
-        { code: 'aus', name: 'Australia' },
-        { code: 'aus', name: 'Australia' },
-        { code: 'aus', name: 'Australia' },
-        { code: 'aus', name: 'Australia' },
-        { code: 'aus', name: 'Australia' },
-        { code: 'aus', name: 'Australia' },
-        { code: 'aus', name: 'Australia' },
-        { code: 'can', name: 'Canada' },
-        { code: 'saf', name: 'South Africa' },
-        { code: 'fra', name: 'France' },
-        { code: 'hk', name: 'HongKong' },
-        { code: 'jap', name: 'Japan' },
-        { code: 'sin', name: 'Singapore' },
-        { code: 'chi', name: 'Chily' },
-        { code: 'eng-ire-sco-wal', name: 'UK & Ireland' }
-    ]);
+
+const countryList = Array.from(Array(10), (x, index) => {
+    switch (index) {
+        case 1:
+            return { code: 'can', name: 'Canada' };
+        case 2:
+            return { code: 'fra', name: 'France' };
+        case 3,4:
+            return { code: 'saf', name: 'South Africa' };
+        case 5, 6:
+            return { code: 'eng-ire-sco-wal', name: 'UK & Ireland' };
+        default:
+            return { code: 'aus', name: 'Australia' };
+    }
 });
+
+casual.define('country', () => casual.random_element(countryList));
 
 casual.define('eventStatus', () => casual.random_element(Array.from(Array(20), (x, index) => {
     if (index % 20 === 1) {
@@ -60,5 +57,12 @@ casual.define('eventStatus', () => casual.random_element(Array.from(Array(20), (
 })));
 
 casual.define('outcomeDateString', () => moment().add(casual.integer(0, 60 * 24 * 2), 'minutes').utcOffset(0).format())
+const isFutureArray = Array.from(Array(20), (x, index) => {
+    // 1/10 of chance to be future events
+    return index % 20 === 1 ? true : false;
+})
+casual.define('isFuture', () => casual.random_element(isFutureArray));
+
+
 
 export { casual } 

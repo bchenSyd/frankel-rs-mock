@@ -47,10 +47,7 @@ const eventResolver = eventId => {
         markets: marketsResolver(),
         childMarkets: null,
         eventForm: eventFormResolver(eventIdentifier.origId),
-        isFuture: casual.random_element(Array.from(Array(10), (x, index) => {
-            // 1/10 of chance to be future events
-            x = index % 20 === 1 ? true : false;
-        })),
+        isFuture: casual.isFuture,
     }
 };
 

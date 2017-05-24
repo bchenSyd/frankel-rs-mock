@@ -6,8 +6,10 @@ import { meetingFormResolver, raceResolver } from './'
 
 const meetingResolver = () => {
     const id = casual.word + '_au_t_' + moment().add(casual.integer(0, 100), 'hours').format('DD_MM_YYYY');
+    const country = casual.country;
     return {
-        countryCode: casual.country.code,
+        countryCode: country.code,
+        countryName: country.name,
         id: 'meeting:' + id,
         name: casual.meetingName,
         origId: id,

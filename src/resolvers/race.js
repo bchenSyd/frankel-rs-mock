@@ -22,10 +22,7 @@ const raceResolver = raceNumber => {
         distance: casual.integer(500, 2000) + 'm',
         result: casual.random_element(['closed', '5,2,8', '4,5,3']), // only used when event is closed
         number: raceNumber || casual.integer(1, 10),
-        isFuture: casual.random_element(Array.from(Array(10), (x, index) => {
-            // 1/10 of chance to be future events
-            x = index % 20 === 1 ? true : false;
-        })),
+        isFuture: casual.isFuture,
     }
 };
 
